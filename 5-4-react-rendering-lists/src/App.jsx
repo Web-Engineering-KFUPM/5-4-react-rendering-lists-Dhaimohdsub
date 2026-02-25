@@ -121,7 +121,7 @@ import "./index.css";
 export default function App() {
   const [courses, setCourses] = useState(sampleCourses);
 
-  // Helper function (no need to edit this)
+  // Helper function to update tasks of a course
   function mutateCourseByIndex(index, updater) {
     setCourses((cs) =>
       cs.map((c, i) => (i === index ? { ...c, tasks: updater(c.tasks) } : c))
@@ -138,14 +138,18 @@ export default function App() {
       </header>
 
       <section className="grid">
-        {/* TODO (TASK 1): Render all courses using courses.map(...)
-      For each course render <CourseCard /> and pass:
-        - key={course.id}
-        - course={course}
-        - index={idx}
-        - onMutateCourse={mutateCourseByIndex}
-  */}
+        {courses.map((course, idx) => (
+          <CourseCard
+            key={course.id}
+            course={course}
+            index={idx}
+            onMutateCourse={mutateCourseByIndex}
+          />
+        ))}
       </section>
     </main>
   );
 }
+
+
+  
